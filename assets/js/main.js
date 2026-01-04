@@ -171,39 +171,6 @@
     if (location.hash) scrollToHash(location.hash);
   });
 
-  // Language switch keeps section
-  $$("[data-lang-switch]").forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const target = a.getAttribute("href");
-      if (!target) return;
-      const hash = location.hash || "";
-      // preserve anchor for equivalent sections (if IDs differ ES/EN, map below)
-      const mapped = mapHashForLanguage(hash, target);
-      a.setAttribute("href", target + mapped);
-    });
-  });
-
-  // Map ES/EN section ids so the switch lands on the equivalent section.
-function mapHashForLanguage(hash, targetHref) {
-  if (!hash) return "";
-  const map = {
-    "#sobre": "#about",
-    "#habitaciones": "#rooms",
-    "#servicios": "#amenities",
-    "#galeria": "#gallery",
-    "#ubicacion": "#location",
-    "#contacto": "#contact",
-    "#about": "#sobre",
-    "#rooms": "#habitaciones",
-    "#amenities": "#servicios",
-    "#gallery": "#galeria",
-    "#location": "#ubicacion",
-    "#contact": "#contacto",
-  };
-  // If switching to English and currently in Spanish, map; and vice versa
-  return map[hash] ? map[hash] : hash;
-}
-
   // Simple Lightbox
   const lightbox = $("#lightbox");
   const lightboxImg = $("#lightboxImg");

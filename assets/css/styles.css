@@ -659,11 +659,24 @@ h3 {
     padding: 10px;
     border-radius: 16px;
     border: 1px solid var(--line);
-    background: var(--glass);
-    backdrop-filter: blur(10px);
+    background: var(--bg-strong);
+    backdrop-filter: none;
   }
   .nav__menu.is-open {
     display: flex;
+  }
+  .nav__menu .lang,
+  .nav__menu .theme-toggle {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    padding: 0;
+    border-radius: 12px;
+    background: var(--card-weak);
+    border: 1px solid var(--line);
   }
 }
 .rates-grid {
