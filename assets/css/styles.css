@@ -728,3 +728,46 @@ h3 {
   display: grid;
   gap: 10px;
 }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+.service-card {
+  display: grid;
+  gap: 10px;
+}
+.service-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.service-card--accent {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  background: linear-gradient(180deg, var(--card), var(--card-weak));
+}
+.service-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+}
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.trip-card {
+  display: grid;
+  gap: 8px;
+  place-items: center;
+  min-height: 180px;
+}
+.trip-card .muted {
+  text-align: center;
+}
