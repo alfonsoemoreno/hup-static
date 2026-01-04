@@ -1,25 +1,318 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sitio Estático</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
-  <header>
-    <h1>Sitio Estático</h1>
-    <nav>
-      <a href="/">Inicio</a>
-      <a href="/en/">English</a>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>Bienvenido</h2>
-      <p>Contenido de ejemplo en español.</p>
-    </section>
-  </main>
-  <script src="assets/js/main.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hotel Último Paraíso</title>
+    <meta
+      name="description"
+      content="Hotel Último Paraíso. Naturaleza, descanso y experiencia en Patagonia."
+    />
+
+    <link rel="canonical" href="https://hotelultimoparaiso.cl/" />
+    <link rel="alternate" hreflang="es" href="https://hotelultimoparaiso.cl/" />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://hotelultimoparaiso.cl/en/"
+    />
+
+    <link rel="preload" href="/assets/css/styles.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="#top" aria-label="Hotel Último Paraíso">
+          <span class="brand__mark">HUP</span>
+          <span class="brand__text">Hotel Último Paraíso</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <button
+            class="nav__toggle"
+            id="navToggle"
+            aria-expanded="false"
+            aria-controls="navMenu"
+          >
+            <span class="sr-only">Abrir menú</span>
+            ☰
+          </button>
+
+          <div class="nav__menu" id="navMenu">
+            <a class="nav__link" href="#sobre">Sobre</a>
+            <a class="nav__link" href="#habitaciones">Habitaciones</a>
+            <a class="nav__link" href="#servicios">Servicios</a>
+            <a class="nav__link" href="#galeria">Galería</a>
+            <a class="nav__link" href="#ubicacion">Ubicación</a>
+            <a class="nav__link" href="#contacto">Contacto</a>
+
+            <a
+              class="lang"
+              href="/en/"
+              data-lang-switch
+              aria-label="Switch to English"
+              >EN</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <!-- HERO -->
+      <section class="hero" aria-label="Portada">
+        <div
+          class="hero__bg"
+          role="img"
+          aria-label="Vista del hotel"
+          data-hero-bg
+        ></div>
+
+        <div class="container hero__inner">
+          <h1>Descanso y naturaleza en Patagonia</h1>
+          <p>
+            Un lugar simple, cálido y cómodo para desconectarse y disfrutar el
+            entorno.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn" href="#contacto">Consultar disponibilidad</a>
+            <a class="btn btn--ghost" href="#galeria">Ver fotografías</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+      <section class="section" id="sobre">
+        <div class="container grid2">
+          <div>
+            <h2>Sobre el hotel</h2>
+            <p>Aquí pega tu texto real (ES). Ideal: 2–4 párrafos cortos.</p>
+            <p>
+              Puedes mencionar ubicación, estilo, enfoque familiar, actividades
+              cercanas, etc.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Lo esencial</h3>
+            <ul class="list">
+              <li>Check-in: 15:00</li>
+              <li>Check-out: 11:00</li>
+              <li>Desayuno (opcional)</li>
+              <li>Wi-Fi</li>
+              <li>Estacionamiento</li>
+            </ul>
+            <p class="muted">* Ajusta estos puntos según tu caso real.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HABITACIONES -->
+      <section class="section section--alt" id="habitaciones">
+        <div class="container">
+          <h2>Habitaciones</h2>
+          <p class="lead">
+            Describe tipos de habitación y lo que incluye cada una.
+          </p>
+
+          <div class="cards3">
+            <article class="card">
+              <h3>Estándar</h3>
+              <p>Ideal para 1–2 personas. Baño privado, calefacción, etc.</p>
+            </article>
+
+            <article class="card">
+              <h3>Superior</h3>
+              <p>Más espacio / mejor vista. Agrega lo que aplique.</p>
+            </article>
+
+            <article class="card">
+              <h3>Familiar</h3>
+              <p>Para grupos o familia. Detalla camas, capacidad, etc.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section class="section" id="servicios">
+        <div class="container">
+          <h2>Servicios</h2>
+          <div class="chips">
+            <span class="chip">Desayuno</span>
+            <span class="chip">Wi-Fi</span>
+            <span class="chip">Calefacción</span>
+            <span class="chip">Traslados</span>
+            <span class="chip">Tours</span>
+            <span class="chip">Recepción</span>
+          </div>
+          <p class="muted">
+            Ajusta la lista para que coincida con tu oferta real.
+          </p>
+        </div>
+      </section>
+
+      <!-- GALERÍA -->
+      <section class="section section--alt" id="galeria">
+        <div class="container">
+          <div class="section__head">
+            <h2>Galería</h2>
+            <p class="lead">Haz clic para ampliar.</p>
+          </div>
+
+          <div class="gallery" data-gallery>
+            <button class="thumb" data-full="/assets/img/gallery-1.jpg">
+              <img
+                src="/assets/img/gallery-1.jpg"
+                alt="Fotografía 1"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-2.jpg">
+              <img
+                src="/assets/img/gallery-2.jpg"
+                alt="Fotografía 2"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-3.jpg">
+              <img
+                src="/assets/img/gallery-3.jpg"
+                alt="Fotografía 3"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-4.jpg">
+              <img
+                src="/assets/img/gallery-4.jpg"
+                alt="Fotografía 4"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-5.jpg">
+              <img
+                src="/assets/img/gallery-5.jpg"
+                alt="Fotografía 5"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-6.jpg">
+              <img
+                src="/assets/img/gallery-6.jpg"
+                alt="Fotografía 6"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- UBICACIÓN -->
+      <section class="section" id="ubicacion">
+        <div class="container grid2">
+          <div>
+            <h2>Ubicación</h2>
+            <p>Pega aquí dirección / referencia / cómo llegar.</p>
+
+            <div class="actions">
+              <a
+                class="btn btn--ghost"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                data-maps-link
+              >
+                Abrir en Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Mapa</h3>
+            <p class="muted">
+              Por simplicidad, dejamos un link a Maps. Más adelante puedes
+              embebir un mapa o usar un provider gratis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="section section--alt" id="contacto">
+        <div class="container grid2">
+          <div>
+            <h2>Contacto</h2>
+            <p class="lead">
+              Escríbenos para disponibilidad, tarifas y consultas.
+            </p>
+
+            <ul class="list">
+              <li>
+                <strong>Teléfono / WhatsApp:</strong>
+                <a href="#" data-phone>+56 …</a>
+              </li>
+              <li>
+                <strong>Email:</strong>
+                <a href="#" data-email>contacto@hotelultimoparaiso.cl</a>
+              </li>
+            </ul>
+
+            <p class="muted">
+              * Este formulario por ahora no envía. Luego lo conectamos a una
+              función serverless / proveedor de formularios.
+            </p>
+          </div>
+
+          <form class="form card" id="contactForm">
+            <label>
+              Nombre
+              <input name="name" required autocomplete="name" />
+            </label>
+
+            <label>
+              Email
+              <input name="email" type="email" required autocomplete="email" />
+            </label>
+
+            <label>
+              Mensaje
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <button class="btn" type="submit">Enviar</button>
+            <p class="muted" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> Hotel Último Paraíso</p>
+        <a class="to-top" href="#top">Volver arriba ↑</a>
+      </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Imagen ampliada"
+    >
+      <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">
+        ✕
+      </button>
+      <img id="lightboxImg" alt="" />
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
 </html>

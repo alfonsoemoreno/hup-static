@@ -1,25 +1,303 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Static Site</title>
-  <link rel="stylesheet" href="../assets/css/styles.css" />
-</head>
-<body>
-  <header>
-    <h1>Static Site</h1>
-    <nav>
-      <a href="/">Inicio</a>
-      <a href="/en/">English</a>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>Welcome</h2>
-      <p>Sample content in English.</p>
-    </section>
-  </main>
-  <script src="../assets/js/main.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hotel Último Paraíso</title>
+    <meta
+      name="description"
+      content="Hotel Último Paraíso. Nature, rest, and a warm experience in Patagonia."
+    />
+
+    <link rel="canonical" href="https://hotelultimoparaiso.cl/en/" />
+    <link rel="alternate" hreflang="es" href="https://hotelultimoparaiso.cl/" />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://hotelultimoparaiso.cl/en/"
+    />
+
+    <link rel="preload" href="/assets/css/styles.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="#top" aria-label="Hotel Último Paraíso">
+          <span class="brand__mark">HUP</span>
+          <span class="brand__text">Hotel Último Paraíso</span>
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <button
+            class="nav__toggle"
+            id="navToggle"
+            aria-expanded="false"
+            aria-controls="navMenu"
+          >
+            <span class="sr-only">Open menu</span>
+            ☰
+          </button>
+
+          <div class="nav__menu" id="navMenu">
+            <a class="nav__link" href="#about">About</a>
+            <a class="nav__link" href="#rooms">Rooms</a>
+            <a class="nav__link" href="#amenities">Amenities</a>
+            <a class="nav__link" href="#gallery">Gallery</a>
+            <a class="nav__link" href="#location">Location</a>
+            <a class="nav__link" href="#contact">Contact</a>
+
+            <a
+              class="lang"
+              href="/"
+              data-lang-switch
+              aria-label="Cambiar a Español"
+              >ES</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero" aria-label="Hero">
+        <div
+          class="hero__bg"
+          role="img"
+          aria-label="Hotel view"
+          data-hero-bg
+        ></div>
+
+        <div class="container hero__inner">
+          <h1>Rest and nature in Patagonia</h1>
+          <p>
+            A simple, warm, and comfortable place to disconnect and enjoy the
+            landscape.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn" href="#contact">Check availability</a>
+            <a class="btn btn--ghost" href="#gallery">View photos</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container grid2">
+          <div>
+            <h2>About the hotel</h2>
+            <p>Paste your real English content here (2–4 short paragraphs).</p>
+            <p>Location, vibe, family approach, nearby activities, etc.</p>
+          </div>
+
+          <div class="card">
+            <h3>Essentials</h3>
+            <ul class="list">
+              <li>Check-in: 3:00 PM</li>
+              <li>Check-out: 11:00 AM</li>
+              <li>Breakfast (optional)</li>
+              <li>Wi-Fi</li>
+              <li>Parking</li>
+            </ul>
+            <p class="muted">* Adjust to your real details.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="rooms">
+        <div class="container">
+          <h2>Rooms</h2>
+          <p class="lead">Describe your room types and what each includes.</p>
+
+          <div class="cards3">
+            <article class="card">
+              <h3>Standard</h3>
+              <p>Perfect for 1–2 guests. Private bathroom, heating, etc.</p>
+            </article>
+
+            <article class="card">
+              <h3>Superior</h3>
+              <p>More space / better view. Add what applies.</p>
+            </article>
+
+            <article class="card">
+              <h3>Family</h3>
+              <p>For families or small groups. Capacity, beds, etc.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="amenities">
+        <div class="container">
+          <h2>Amenities</h2>
+          <div class="chips">
+            <span class="chip">Breakfast</span>
+            <span class="chip">Wi-Fi</span>
+            <span class="chip">Heating</span>
+            <span class="chip">Transfers</span>
+            <span class="chip">Tours</span>
+            <span class="chip">Front desk</span>
+          </div>
+          <p class="muted">Adjust to match your real offer.</p>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="gallery">
+        <div class="container">
+          <div class="section__head">
+            <h2>Gallery</h2>
+            <p class="lead">Click to enlarge.</p>
+          </div>
+
+          <div class="gallery" data-gallery>
+            <button class="thumb" data-full="/assets/img/gallery-1.jpg">
+              <img
+                src="/assets/img/gallery-1.jpg"
+                alt="Photo 1"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-2.jpg">
+              <img
+                src="/assets/img/gallery-2.jpg"
+                alt="Photo 2"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-3.jpg">
+              <img
+                src="/assets/img/gallery-3.jpg"
+                alt="Photo 3"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-4.jpg">
+              <img
+                src="/assets/img/gallery-4.jpg"
+                alt="Photo 4"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-5.jpg">
+              <img
+                src="/assets/img/gallery-5.jpg"
+                alt="Photo 5"
+                loading="lazy"
+              />
+            </button>
+            <button class="thumb" data-full="/assets/img/gallery-6.jpg">
+              <img
+                src="/assets/img/gallery-6.jpg"
+                alt="Photo 6"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="location">
+        <div class="container grid2">
+          <div>
+            <h2>Location</h2>
+            <p>Paste your address / how to get here.</p>
+
+            <div class="actions">
+              <a
+                class="btn btn--ghost"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                data-maps-link
+              >
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Map</h3>
+            <p class="muted">
+              For simplicity we use a Maps link. Later we can embed a map if
+              needed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="contact">
+        <div class="container grid2">
+          <div>
+            <h2>Contact</h2>
+            <p class="lead">
+              Message us for availability, rates, and questions.
+            </p>
+
+            <ul class="list">
+              <li>
+                <strong>Phone / WhatsApp:</strong>
+                <a href="#" data-phone>+56 …</a>
+              </li>
+              <li>
+                <strong>Email:</strong>
+                <a href="#" data-email>contacto@hotelultimoparaiso.cl</a>
+              </li>
+            </ul>
+
+            <p class="muted">
+              * This form doesn’t send yet. We’ll connect it later (serverless /
+              form provider).
+            </p>
+          </div>
+
+          <form class="form card" id="contactForm">
+            <label>
+              Name
+              <input name="name" required autocomplete="name" />
+            </label>
+
+            <label>
+              Email
+              <input name="email" type="email" required autocomplete="email" />
+            </label>
+
+            <label>
+              Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <button class="btn" type="submit">Send</button>
+            <p class="muted" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> Hotel Último Paraíso</p>
+        <a class="to-top" href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <div
+      class="lightbox"
+      id="lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Enlarged image"
+    >
+      <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+        ✕
+      </button>
+      <img id="lightboxImg" alt="" />
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
 </html>
