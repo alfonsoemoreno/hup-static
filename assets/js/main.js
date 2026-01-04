@@ -7,9 +7,18 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   // Hero background (simple)
+  const scriptEl = document.currentScript;
+  const assetsBase = (() => {
+    if (!scriptEl) return "";
+    const url = new URL(scriptEl.src, window.location.href);
+    return url.pathname.replace(/\/assets\/js\/main\.js$/, "");
+  })();
+  const assetPath = (path) =>
+    `${assetsBase}/assets/${path}`.replace(/\/{2,}/g, "/");
+
   const heroBg = document.querySelector("[data-hero-bg]");
   if (heroBg) {
-    heroBg.style.backgroundImage = "url('/assets/img/hero.jpg')";
+    heroBg.style.backgroundImage = `url('${assetPath("img/hero.jpg")}')`;
   }
 
   // Theme toggle (respects system preference by default)
@@ -150,26 +159,25 @@
   });
 
   // Map ES/EN section ids so the switch lands on the equivalent section.
-  function mapHashForLanguage(hash, targetHref) {
-    if (!hash) return "";
-    const toEnglish = targetHref.startsWith("/en");
-    const map = {
-      "#sobre": "#about",
-      "#habitaciones": "#rooms",
-      "#servicios": "#amenities",
-      "#galeria": "#gallery",
-      "#ubicacion": "#location",
-      "#contacto": "#contact",
-      "#about": "#sobre",
-      "#rooms": "#habitaciones",
-      "#amenities": "#servicios",
-      "#gallery": "#galeria",
-      "#location": "#ubicacion",
-      "#contact": "#contacto",
-    };
-    // If switching to English and currently in Spanish, map; and vice versa
-    return map[hash] ? map[hash] : hash;
-  }
+function mapHashForLanguage(hash, targetHref) {
+  if (!hash) return "";
+  const map = {
+    "#sobre": "#about",
+    "#habitaciones": "#rooms",
+    "#servicios": "#amenities",
+    "#galeria": "#gallery",
+    "#ubicacion": "#location",
+    "#contacto": "#contact",
+    "#about": "#sobre",
+    "#rooms": "#habitaciones",
+    "#amenities": "#servicios",
+    "#gallery": "#galeria",
+    "#location": "#ubicacion",
+    "#contact": "#contacto",
+  };
+  // If switching to English and currently in Spanish, map; and vice versa
+  return map[hash] ? map[hash] : hash;
+}
 
   // Simple Lightbox
   const lightbox = $("#lightbox");
