@@ -12,6 +12,73 @@
     heroBg.style.backgroundImage = "url('/assets/img/hero.jpg')";
   }
 
+  // Theme toggle (respects system preference by default)
+  const themeToggle = $("#themeToggle");
+  const themeStorageKey = "hup-theme";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  let userSetTheme = false;
+
+  const themeLabels =
+    document.documentElement.lang === "en"
+      ? {
+          toLight: "Switch to light mode",
+          toDark: "Switch to dark mode",
+        }
+      : {
+          toLight: "Cambiar a modo claro",
+          toDark: "Cambiar a modo oscuro",
+        };
+
+  const storedTheme = (() => {
+    try {
+      return localStorage.getItem(themeStorageKey);
+    } catch (_) {
+      return null;
+    }
+  })();
+  userSetTheme = Boolean(storedTheme);
+
+  function applyTheme(theme, persist = false) {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme =
+      theme === "dark" ? "dark" : "light";
+    syncThemeToggle(theme);
+    if (persist) {
+      userSetTheme = true;
+      try {
+        localStorage.setItem(themeStorageKey, theme);
+      } catch (_) {
+        /* ignore */
+      }
+    }
+  }
+
+  function syncThemeToggle(theme) {
+    if (!themeToggle) return;
+    const nextLabel = theme === "dark" ? themeLabels.toLight : themeLabels.toDark;
+    themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+    themeToggle.setAttribute("aria-label", nextLabel);
+    themeToggle.setAttribute("title", nextLabel);
+    themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  }
+
+  const initialTheme =
+    storedTheme || (prefersDark.matches ? "dark" : "light");
+  applyTheme(initialTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.dataset.theme || "light";
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next, true);
+    });
+  }
+
+  prefersDark.addEventListener("change", (event) => {
+    if (storedTheme || userSetTheme) return;
+    applyTheme(event.matches ? "dark" : "light");
+  });
+
   // Mobile menu
   const navToggle = $("#navToggle");
   const navMenu = $("#navMenu");

@@ -1,13 +1,88 @@
 :root {
+  color-scheme: dark;
   --bg: #0b0f14;
-  --bg2: #0f1620;
+  --bg-strong: #0f1620;
   --card: rgba(255, 255, 255, 0.06);
+  --card-weak: rgba(255, 255, 255, 0.04);
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.7);
   --line: rgba(255, 255, 255, 0.12);
   --accent: #ffffff;
   --radius: 16px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glass: rgba(11, 15, 20, 0.6);
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  --btn-border: rgba(255, 255, 255, 0.22);
+  --btn-hover: rgba(255, 255, 255, 0.14);
+  --ghost-bg: rgba(255, 255, 255, 0.04);
+  --ghost-hover: rgba(255, 255, 255, 0.08);
+  --thumb-bg: rgba(255, 255, 255, 0.02);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f4f6fb;
+    --bg-strong: #ffffff;
+    --card: #ffffff;
+    --card-weak: #eef1f6;
+    --text: #111827;
+    --muted: #4b5563;
+    --line: rgba(0, 0, 0, 0.08);
+    --accent: #0f172a;
+    --shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+    --glass: rgba(255, 255, 255, 0.85);
+    --input-bg: #ffffff;
+    --btn-bg: rgba(17, 24, 39, 0.08);
+    --btn-border: rgba(15, 23, 42, 0.16);
+    --btn-hover: rgba(15, 23, 42, 0.12);
+    --ghost-bg: #eef1f6;
+    --ghost-hover: #e3e7f0;
+    --thumb-bg: #eef1f6;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --bg-strong: #0f1620;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-weak: rgba(255, 255, 255, 0.04);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.7);
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glass: rgba(11, 15, 20, 0.6);
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  --btn-border: rgba(255, 255, 255, 0.22);
+  --btn-hover: rgba(255, 255, 255, 0.14);
+  --ghost-bg: rgba(255, 255, 255, 0.04);
+  --ghost-hover: rgba(255, 255, 255, 0.08);
+  --thumb-bg: rgba(255, 255, 255, 0.02);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f6fb;
+  --bg-strong: #ffffff;
+  --card: #ffffff;
+  --card-weak: #eef1f6;
+  --text: #111827;
+  --muted: #4b5563;
+  --line: rgba(0, 0, 0, 0.08);
+  --accent: #0f172a;
+  --shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+  --glass: rgba(255, 255, 255, 0.85);
+  --input-bg: #ffffff;
+  --btn-bg: rgba(17, 24, 39, 0.08);
+  --btn-border: rgba(15, 23, 42, 0.16);
+  --btn-hover: rgba(15, 23, 42, 0.12);
+  --ghost-bg: #eef1f6;
+  --ghost-hover: #e3e7f0;
+  --thumb-bg: #eef1f6;
 }
 
 * {
@@ -21,7 +96,11 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
     Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
-  background: radial-gradient(1200px 800px at 20% 0%, #1a2230 0%, var(--bg) 55%)
+  background: radial-gradient(
+      1200px 800px at 20% 0%,
+      var(--bg-strong) 0%,
+      var(--bg) 55%
+    )
     fixed;
 }
 
@@ -68,7 +147,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 15, 20, 0.6);
+  background: var(--glass);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -92,7 +171,7 @@ img {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-weak);
 }
 .brand__text {
   font-weight: 600;
@@ -105,7 +184,7 @@ img {
 .nav__toggle {
   display: none;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-weak);
   color: var(--text);
   border-radius: 12px;
   padding: 8px 10px;
@@ -115,6 +194,17 @@ img {
   display: flex;
   gap: 14px;
   align-items: center;
+}
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--card-weak);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--card);
 }
 .nav__link,
 .lang {
@@ -126,7 +216,7 @@ img {
 .nav__link:hover,
 .lang:hover {
   border-color: var(--line);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-weak);
 }
 .lang {
   border-color: var(--line);
@@ -173,11 +263,7 @@ img {
   padding: 56px 0;
 }
 .section--alt {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(180deg, var(--card-weak), transparent);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -239,7 +325,7 @@ h3 {
 }
 .chip {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-weak);
   padding: 8px 10px;
   border-radius: 999px;
   color: var(--muted);
@@ -255,19 +341,22 @@ h3 {
   justify-content: center;
   gap: 8px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--btn-border);
   padding: 10px 14px;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--btn-bg);
   cursor: pointer;
   color: var(--text);
 }
 .btn:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--btn-hover);
 }
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--ghost-bg);
   border-color: var(--line);
+}
+.btn--ghost:hover {
+  background: var(--ghost-hover);
 }
 
 .gallery {
@@ -280,7 +369,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--thumb-bg);
   cursor: pointer;
 }
 .thumb img {
@@ -299,7 +388,7 @@ h3 {
 .form textarea {
   width: 100%;
   border: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--input-bg);
   color: var(--text);
   border-radius: 12px;
   padding: 10px 12px;
@@ -307,7 +396,7 @@ h3 {
 }
 .form input:focus,
 .form textarea:focus {
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
 }
 
 .footer {
@@ -328,7 +417,7 @@ h3 {
   border-radius: 12px;
 }
 .to-top:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-weak);
 }
 
 .lightbox {
@@ -348,7 +437,7 @@ h3 {
   max-width: min(1100px, 100%);
   max-height: 82vh;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
 .lightbox__close {
@@ -356,14 +445,14 @@ h3 {
   top: 16px;
   right: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
   padding: 10px 12px;
   cursor: pointer;
 }
 .lightbox__close:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--btn-hover);
 }
 
 @media (max-width: 900px) {
@@ -394,7 +483,7 @@ h3 {
     padding: 10px;
     border-radius: 16px;
     border: 1px solid var(--line);
-    background: rgba(11, 15, 20, 0.9);
+    background: var(--glass);
     backdrop-filter: blur(10px);
   }
   .nav__menu.is-open {
