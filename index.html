@@ -447,7 +447,7 @@
 
       <!-- UBICACIÓN -->
       <section class="section" id="ubicacion">
-        <div class="container grid2">
+        <div class="container grid2 grid2--location">
           <div>
             <h2>Ubicación</h2>
             <p>Pega aquí dirección / referencia / cómo llegar.</p>
@@ -467,10 +467,15 @@
 
           <div class="card">
             <h3>Mapa</h3>
-            <p class="muted">
-              Por simplicidad, dejamos un link a Maps. Más adelante puedes
-              embebir un mapa o usar un provider gratis.
-            </p>
+            <div class="map-frame">
+              <iframe
+                title="Cómo llegar al hotel"
+                src="https://www.google.com/maps?q=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&output=embed"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>

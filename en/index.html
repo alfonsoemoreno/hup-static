@@ -437,7 +437,7 @@
       </section>
 
       <section class="section" id="location">
-        <div class="container grid2">
+        <div class="container grid2 grid2--location">
           <div>
             <h2>Location</h2>
             <p>Paste your address / how to get here.</p>
@@ -457,10 +457,15 @@
 
           <div class="card">
             <h3>Map</h3>
-            <p class="muted">
-              For simplicity we use a Maps link. Later we can embed a map if
-              needed.
-            </p>
+            <div class="map-frame">
+              <iframe
+                title="How to get to the hotel"
+                src="https://www.google.com/maps?q=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&output=embed"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
