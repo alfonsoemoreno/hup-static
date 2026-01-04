@@ -18,7 +18,7 @@
 
   const heroBg = document.querySelector("[data-hero-bg]");
   if (heroBg) {
-    heroBg.style.backgroundImage = `url('${assetPath("img/hero.jpg")}')`;
+    heroBg.style.backgroundImage = `url('${assetPath("img/hero.webp")}')`;
   }
 
   // Theme toggle (respects system preference by default)
