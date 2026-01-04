@@ -295,29 +295,66 @@ img {
   margin: 0 0 18px;
 }
 
-/* Video sticky section */
+/* Video parallax section */
 .section--video {
   padding: 0;
-}
-.video-sticky {
-  position: sticky;
-  top: 72px;
-  padding: 24px 0;
-}
-.video-frame {
   position: relative;
-  padding-top: 56.25%;
-  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  min-height: 80vh;
+  isolation: isolate;
 }
-.video-frame iframe {
+.video-parallax {
+  position: absolute;
+  inset: -12vh 0;
+  overflow: hidden;
+  z-index: -1;
+  transform: translate3d(0, var(--vp-offset, 0), 0);
+}
+.video-parallax iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110vw;
+  height: 110vh;
+  transform: translate(-50%, -50%);
+  border: 0;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.05);
+  pointer-events: none;
+}
+.video-parallax iframe {
+  background: #000;
+}
+.video-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.1), transparent 30%);
+  mix-blend-mode: overlay;
+}
+.video-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .section--video {
+    min-height: 80vh;
+  }
+  .video-parallax {
+    inset: -30vh 0;
+    height: 140vh;
+  }
+  .video-parallax iframe {
+    width: 120vw;
+    height: 120vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+  }
 }
 .map-frame {
   position: relative;
@@ -343,6 +380,56 @@ img {
 
 .section {
   padding: 56px 0;
+}
+.section--landscape {
+  position: relative;
+  padding: 96px 0;
+  color: #fff;
+  overflow: hidden;
+}
+.section--landscape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+    url("../img/parallax.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: saturate(1.1) contrast(1.05);
+  z-index: 0;
+}
+.section--landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 35%);
+  z-index: 1;
+  pointer-events: none;
+}
+.landscape__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+}
+.landscape__card {
+  max-width: 900px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.landscape__card h2 {
+  margin-top: 0;
+  color: #fff;
+}
+.landscape__card p {
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.7;
 }
 .section--alt {
   background: linear-gradient(180deg, var(--card-weak), transparent);
@@ -578,4 +665,53 @@ h3 {
   .nav__menu.is-open {
     display: flex;
   }
+}
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.rate-card {
+  display: grid;
+  gap: 12px;
+}
+.rate-card__head h3 {
+  margin: 6px 0 6px;
+  font-size: 24px;
+}
+.rate-card__list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 1px solid var(--line);
+  background: var(--card-weak);
+}
+.pill--soft {
+  border-color: color-mix(in srgb, var(--accent) 15%, var(--line));
+}
+.pill--accent {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+.rate-card--accent {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: linear-gradient(180deg, var(--card), var(--card-weak));
+}
+.rate-terms {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
 }

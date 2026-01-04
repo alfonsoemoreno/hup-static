@@ -21,6 +21,31 @@
     heroBg.style.backgroundImage = `url('${assetPath("img/hero.webp")}')`;
   }
 
+  // Parallax effect for video background
+  const videoParallax = $(".video-parallax");
+  if (videoParallax) {
+    const applyVideoParallax = () => {
+      const vh = window.innerHeight || 1;
+      const rect = videoParallax.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const delta = (center - vh / 2) * 0.15;
+      const clamped = Math.max(Math.min(delta, 120), -120);
+      videoParallax.style.setProperty("--vp-offset", `${clamped}px`);
+    };
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      window.requestAnimationFrame(() => {
+        applyVideoParallax();
+        ticking = false;
+      });
+      ticking = true;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", applyVideoParallax);
+    applyVideoParallax();
+  }
+
   // Theme toggle (respects system preference by default)
   const themeToggle = $("#themeToggle");
   const themeStorageKey = "hup-theme";
