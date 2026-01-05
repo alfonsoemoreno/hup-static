@@ -246,7 +246,7 @@
   const form = $("#contactForm");
   const status = $("#formStatus");
   if (form && status) {
-    const endpoint = "https://mail-sender-delta-seven.vercel.app/api/contact";
+    const endpoint = "/api/contact";
     const lang = document.documentElement.lang || "es";
     const messages =
       lang === "en"

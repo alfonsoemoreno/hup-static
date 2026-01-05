@@ -22,7 +22,7 @@ const site = Astro.site;
 const pageCanonical =
   canonical ?? (site ? new URL(Astro.url.pathname, site).href : undefined);
 const asset = (path: string) =>
-  site ? new URL(path, site).pathname : `/${path.replace(/^\\//, "")}`;
+  site ? new URL(path, site).pathname : `/${path.replace(/^\//, "")}`;
 ---
 
 <!doctype html>
