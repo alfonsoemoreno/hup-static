@@ -254,7 +254,8 @@
   // Links placeholders (set your real phone/email/maps here)
   const phone = "+56XXXXXXXXX";
   const email = "contacto@hotelultimoparaiso.cl";
-  const mapsUrl = "https://www.google.com/maps";
+  const mapsUrl =
+    "https://www.google.com/maps/dir/?api=1&destination=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&travelmode=driving";
 
   $$("[data-phone]").forEach((a) => {
     a.textContent = phone;

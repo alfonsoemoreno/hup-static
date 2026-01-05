@@ -42,9 +42,9 @@
     --shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
     --glass: rgba(255, 255, 255, 0.85);
     --input-bg: #ffffff;
-    --btn-bg: rgba(255, 255, 255, 0.1);
-    --btn-border: rgba(255, 255, 255, 0.22);
-    --btn-hover: rgba(255, 255, 255, 0.14);
+    --btn-bg: rgba(15, 23, 42, 0.08);
+    --btn-border: color-mix(in srgb, var(--accent) 35%, var(--line));
+    --btn-hover: rgba(15, 23, 42, 0.12);
     --ghost-bg: rgba(255, 255, 255, 0.04);
     --ghost-hover: rgba(255, 255, 255, 0.08);
     --thumb-bg: #eef1f6;
@@ -93,9 +93,9 @@
   --shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
   --glass: rgba(255, 255, 255, 0.85);
   --input-bg: #ffffff;
-  --btn-bg: rgba(255, 255, 255, 0.1);
-  --btn-border: rgba(255, 255, 255, 0.22);
-  --btn-hover: rgba(255, 255, 255, 0.14);
+  --btn-bg: rgba(15, 23, 42, 0.08);
+  --btn-border: color-mix(in srgb, var(--accent) 35%, var(--line));
+  --btn-hover: rgba(15, 23, 42, 0.12);
   --ghost-bg: rgba(255, 255, 255, 0.04);
   --ghost-hover: rgba(255, 255, 255, 0.08);
   --thumb-bg: #eef1f6;
@@ -511,6 +511,9 @@ h3 {
 
 .actions {
   margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn {
