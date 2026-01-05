@@ -174,6 +174,10 @@
   const headerH = () => (header ? header.getBoundingClientRect().height : 0);
 
   function scrollToHash(hash) {
+    if (hash === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const el = document.querySelector(hash);
     if (!el) return;
     const y = window.scrollY + el.getBoundingClientRect().top - headerH() - 10;
@@ -252,21 +256,6 @@
   }
 
   // Links placeholders (set your real phone/email/maps here)
-  const phone = "+56XXXXXXXXX";
-  const email = "contacto@hotelultimoparaiso.cl";
   const mapsUrl =
     "https://www.google.com/maps/dir/?api=1&destination=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&travelmode=driving";
-
-  $$("[data-phone]").forEach((a) => {
-    a.textContent = phone;
-    a.setAttribute("href", `tel:${phone.replace(/\s+/g, "")}`);
-  });
-
-  $$("[data-email]").forEach((a) => {
-    a.textContent = email;
-    a.setAttribute("href", `mailto:${email}`);
-  });
-
-  const mapsLink = document.querySelector("[data-maps-link]");
-  if (mapsLink) mapsLink.setAttribute("href", mapsUrl);
 })();
