@@ -242,16 +242,53 @@
     if (e.key === "Escape") closeLightbox();
   });
 
-  // Contact form (placeholder)
+  // Contact form (real send)
   const form = $("#contactForm");
   const status = $("#formStatus");
   if (form && status) {
-    form.addEventListener("submit", (e) => {
+    const endpoint = "https://mail-sender-delta-seven.vercel.app/api/contact";
+    const lang = document.documentElement.lang || "es";
+    const messages =
+      lang === "en"
+        ? {
+            sending: "Sending...",
+            success: "Thanks! We received your message and will reply soon.",
+            error: "We couldn’t send your message. Please try again later.",
+            invalid: "Please fill all required fields.",
+          }
+        : {
+            sending: "Enviando...",
+            success: "Gracias. Recibimos tu mensaje y te responderemos pronto.",
+            error: "No pudimos enviar tu mensaje. Intenta más tarde.",
+            invalid: "Completa todos los campos requeridos.",
+          };
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      status.textContent =
-        document.documentElement.lang === "en"
-          ? "Form not connected yet. We'll wire it later."
-          : "Formulario aún no conectado. Luego lo enlazamos.";
+      const data = Object.fromEntries(new FormData(form));
+      if (!data.email || !data.message) {
+        status.textContent = messages.invalid;
+        return;
+      }
+      status.textContent = messages.sending;
+      form.querySelector("button[type=submit]").disabled = true;
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          status.textContent = messages.success;
+          form.reset();
+        } else {
+          status.textContent = messages.error;
+        }
+      } catch (_) {
+        status.textContent = messages.error;
+      } finally {
+        form.querySelector("button[type=submit]").disabled = false;
+      }
     });
   }
 
