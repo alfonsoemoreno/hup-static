@@ -46,6 +46,31 @@
     applyVideoParallax();
   }
 
+  // Parallax effect for landscape background (Safari-friendly)
+  const landscapeBg = $("[data-landscape-bg]");
+  if (landscapeBg) {
+    const applyLandscapeParallax = () => {
+      const vh = window.innerHeight || 1;
+      const rect = landscapeBg.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const delta = (center - vh / 2) * 0.12;
+      const clamped = Math.max(Math.min(delta, 100), -100);
+      landscapeBg.style.setProperty("--lp-offset", `${clamped}px`);
+    };
+    let tickingLand = false;
+    const onScrollLand = () => {
+      if (tickingLand) return;
+      window.requestAnimationFrame(() => {
+        applyLandscapeParallax();
+        tickingLand = false;
+      });
+      tickingLand = true;
+    };
+    window.addEventListener("scroll", onScrollLand, { passive: true });
+    window.addEventListener("resize", applyLandscapeParallax);
+    applyLandscapeParallax();
+  }
+
   // Theme toggle (respects system preference by default)
   const themeToggle = $("#themeToggle");
   const themeStorageKey = "hup-theme";
