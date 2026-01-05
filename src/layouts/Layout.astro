@@ -1,0 +1,52 @@
+---
+interface AlternateLink {
+  href: string;
+  hreflang: string;
+}
+
+const {
+  title = "Hotel Último Paraíso",
+  description = "",
+  lang = "es",
+  canonical,
+  alternates = [],
+} = Astro.props as {
+  title?: string;
+  description?: string;
+  lang?: string;
+  canonical?: string;
+  alternates?: AlternateLink[];
+};
+
+const site = Astro.site;
+const pageCanonical =
+  canonical ?? (site ? new URL(Astro.url.pathname, site).href : undefined);
+const asset = (path: string) =>
+  site ? new URL(path, site).pathname : `/${path.replace(/^\\//, "")}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {pageCanonical && <link rel="canonical" href={pageCanonical} />}
+    {alternates.map((alt) => (
+      <link rel="alternate" href={alt.href} hreflang={alt.hreflang} />
+    ))}
+
+    <link
+      rel="preload"
+      href={asset("assets/css/styles.css")}
+      as="style"
+    />
+    <link rel="stylesheet" href={asset("assets/css/styles.css")} />
+  </head>
+  <body>
+    <slot />
+    <script src={asset("assets/js/main.js")} defer></script>
+  </body>
+</html>

@@ -1,0 +1,474 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const site = Astro.site;
+const pathWithBase = (path: string) =>
+  site ? new URL(path, site).pathname : `/${path.replace(/^\/?/, "")}`;
+
+const canonical = site ? new URL("en/", site).href : undefined;
+const altEs = site ? new URL(".", site).href : "/";
+const alternates = [
+  { href: altEs, hreflang: "es" },
+  { href: canonical ?? "/en/", hreflang: "en" },
+];
+
+const assetBase = pathWithBase("assets/");
+const galleryItems = Array.from({ length: 33 }, (_, idx) => {
+  const id = String(idx + 1).padStart(2, "0");
+  return {
+    id,
+    src: `${assetBase}img/thumbs/Gallery-${id}.webp`,
+    alt: `Photo ${id}`,
+  };
+});
+---
+
+<Layout
+  lang="en"
+  title="Hotel Último Paraíso"
+  description="Hotel Último Paraíso. Nature, rest, and a warm experience in Patagonia."
+  canonical={canonical}
+  alternates={alternates}
+>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Hotel Último Paraíso">
+        <span class="brand__logo-wrap">
+          <img
+            class="brand__logo brand__logo--dark"
+            src={`${assetBase}img/logo-oscuro.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="brand__logo brand__logo--light"
+            src={`${assetBase}img/logo-claro.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
+        <span class="brand__text">Hotel Último Paraíso</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+
+        <div class="nav__menu" id="navMenu">
+          <a class="nav__link" href="#about">About</a>
+          <a class="nav__link" href="#rates">Rates</a>
+          <a class="nav__link" href="#amenities">Amenities</a>
+          <a class="nav__link" href="#gallery">Gallery</a>
+          <a class="nav__link" href="#location">Location</a>
+          <a class="nav__link" href="#contact">Contact</a>
+
+          <button
+            class="theme-toggle"
+            type="button"
+            id="themeToggle"
+            data-theme-toggle
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+          >
+            🌙
+          </button>
+
+          <a
+            class="lang"
+            href={pathWithBase("")}
+            data-lang-switch
+            aria-label="Cambiar a Español"
+            >ES</a
+          >
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg" role="img" aria-label="Hotel view" data-hero-bg></div>
+
+      <div class="container hero__inner">
+        <h1>The Charm and Warmth of Aysén Patagonia</h1>
+        <p>
+          Charming and friendly hotel in the City of Cochrane. Patagonia Aysén -
+          CHILE
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn" href="#contact">Check availability</a>
+          <a class="btn btn--ghost" href="#gallery">View photos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div>
+          <h2>About the hotel</h2>
+          <p>
+            <strong>The Last Paradise Hotel is a charming hotel or "green refuge".</strong>
+          </p>
+          <p>
+            Built in 1997. The construction has been completely made with native woods (cipres,
+            mañio, lenga). We, the owners, are a Spanish couple who fell in love with Cochrane and
+            these very last virgin lands left on our planet. That is the reason for our hotel name
+            Last Paradise. It is probably the last natural, pristine and virgin paradise of the world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--landscape" id="landscape">
+      <div class="landscape-bg" data-landscape-bg></div>
+      <div class="container landscape__content">
+        <div class="landscape__card">
+          <h2>Landscape Around Cochrane</h2>
+          <p>
+            In between the highest mountains of Patagonia you will find The Cerro San Lorenzo close to
+            4,000 mts (12,000 feet) and The San Valentin Mountain, over 4,000 mts (13,000 feet), which
+            is the highest mountain in Patagonia and The Northern Icefield. Being the biggest river of
+            Chile, The Baker River, receives the water of the second biggest lake of South America,
+            General Carrera Lake. Yo can drink the water of the second largest potable water reserves on
+            earth, which are The Northern and Southern Icefields, which are over 200,000 square
+            kilometers wide and 3 kms deep of pure ice. Patagonia is the last refuge of the patagonic
+            deer (huemul), where they are able to live pure and free. The different areas of the region,
+            even though simple with title, are indescribabley beautiful and why this region is The Last
+            Paradise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="rates">
+      <div class="container">
+        <div class="section__head">
+          <h2>Room Rates</h2>
+        </div>
+
+        <div class="rates-grid">
+          <article class="card rate-card">
+            <header class="rate-card__head">
+              <div>
+                <p class="pill pill--soft">Low season</p>
+                <h3>From $130.000</h3>
+                <p class="muted">May 1st - September 30th 2025</p>
+              </div>
+            </header>
+            <ul class="rate-card__list">
+              <li><strong>Single room:</strong> 130.000 pesos plus taxes.</li>
+              <li><strong>Double room:</strong> 140.000 pesos plus taxes.</li>
+              <li>
+                <strong>Triple room</strong> (2 pax share the double bed):
+                150.000 pesos plus taxes.
+              </li>
+            </ul>
+            <p class="muted">* All with breakfast included.</p>
+          </article>
+
+          <article class="card rate-card rate-card--accent">
+            <header class="rate-card__head">
+              <div>
+                <p class="pill pill--accent">High season</p>
+                <h3>From $150.000</h3>
+                <p class="muted">October 1st 2025 - April 30th 2026</p>
+              </div>
+            </header>
+            <ul class="rate-card__list">
+              <li><strong>Single room:</strong> 150.000 pesos plus taxes.</li>
+              <li><strong>Double room:</strong> 160.000 pesos plus taxes.</li>
+              <li>
+                <strong>Triple room</strong> (2 pax share the double bed):
+                185.000 pesos plus taxes.
+              </li>
+            </ul>
+            <p class="muted">* All with breakfast included.</p>
+          </article>
+        </div>
+
+        <div class="rate-terms">
+          <h3>Terms</h3>
+          <p>
+            We offer the possibility to pay in USD or Euros to get taxes off. Payments via bank
+            transfer, cash or credit card at the hotel.
+          </p>
+          <p>
+            To confirm the reservation, a 50% prepayment is necessary and the remaining 50% can be up
+            to 31 days before arrival. If requested less than 31 days in advance, a 100% prepayment is
+            required.
+          </p>
+          <p class="muted">Cancellation policy:</p>
+          <ul class="list">
+            <li>Up to 31 days before arrival: 50% of the total value.</li>
+            <li>30 days before arrival or "no show": 100% of the total value.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--video" aria-label="Hotel video">
+      <div class="video-parallax">
+        <iframe
+          src="https://www.youtube.com/embed/Nx28MAplAtI?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&loop=1&playlist=Nx28MAplAtI"
+          title="Hotel Último Paraíso"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div class="video-overlay"></div>
+        <a
+          class="video-link"
+          href="https://www.youtube.com/watch?v=Nx28MAplAtI"
+          target="_blank"
+          rel="noopener"
+          aria-label="Open video on YouTube"
+        ></a>
+      </div>
+    </section>
+
+    <section class="section" id="amenities">
+      <div class="container">
+        <div class="section__head">
+          <h2>Lodgement and Services</h2>
+          <p class="lead">
+            Warm hospitality, crafted details, and nature all around.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service-card">
+            <div class="service-card__header">
+              <p class="pill pill--soft">Rooms</p>
+              <h3>Cozy stays</h3>
+            </div>
+            <p>
+              Seven warm and comfortable rooms (single, double, triple) of 90 sq ft each, with private
+              fully equipped bathrooms, traditional heat (fireplace), Wi-Fi, phone, and satellite TV.
+              All include a generous homemade breakfast.
+            </p>
+            <ul class="service-list">
+              <li>Comfort and warmth in every detail.</li>
+              <li>Homemade breakfast included.</li>
+            </ul>
+          </article>
+
+          <article class="card service-card service-card--accent">
+            <div class="service-card__header">
+              <p class="pill pill--accent">Services</p>
+              <h3>Extras that matter</h3>
+            </div>
+            <ul class="service-list">
+              <li>Living room with TV and bar service.</li>
+              <li>Laundry.</li>
+              <li>
+                Tourist info and contacts for excursions (Calluqueo Glacier, Tamango Reserve,
+                Patagonia Park, Caleta Tortel, Waterfalls Route, San Carlos Path, horse riding, and more).
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="tripadvisor">
+      <div class="container">
+        <div class="section__head">
+          <h2>TripAdvisor Recognitions</h2>
+          <p class="lead">A reputation backed by travelers.</p>
+        </div>
+
+        <div class="trip-grid">
+          <article class="card trip-card">
+            <div id="TA_certificateOfExcellence399" class="TA_certificateOfExcellence">
+              <ul id="hQ2yRBj" class="TA_links">
+                <li id="ZkCOitj">
+                  <a
+                    target="_blank"
+                    href="https://www.tripadvisor.cl/Hotel_Review-g779907-d3696074-Reviews-Hotel_Ultimo_Paraiso-Cochrane_Aisen_Region.html"
+                    rel="noopener"
+                  >
+                    TripAdvisor
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Certificate of Excellence</p>
+          </article>
+
+          <article class="card trip-card">
+            <div id="TA_cdsratingsonlynarrow52" class="TA_cdsratingsonlynarrow">
+              <ul id="v1blIjQ1CgJl" class="TA_links">
+                <li id="wdQb8SL7bu0">
+                  <a target="_blank" href="https://www.tripadvisor.com/" rel="noopener">TripAdvisor</a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Recent ratings</p>
+          </article>
+
+          <article class="card trip-card">
+            <div id="TA_rated802" class="TA_rated">
+              <ul id="SZUxhjvuBE" class="TA_links">
+                <li id="D89t6vhoL">
+                  <a target="_blank" href="https://www.tripadvisor.com/" rel="noopener">TripAdvisor</a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Traveler badge</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="gallery">
+      <div class="container">
+        <div class="section__head">
+          <h2>Gallery</h2>
+          <p class="lead">Click to enlarge.</p>
+        </div>
+
+        <div class="gallery" data-gallery>
+          {galleryItems.map((item) => (
+            <button class="thumb" data-full={item.src}>
+              <img src={item.src} alt={item.alt} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=certificateOfExcellence&uniq=399&locationId=3696074&lang=en&year=2018&display_version=2"
+    ></script>
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=cdsratingsonlynarrow&uniq=52&locationId=3696074&lang=en&border=false&display_version=2"
+    ></script>
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=rated&uniq=802&locationId=3696074&lang=en&display_version=2"
+    ></script>
+
+    <section class="section" id="location">
+      <div class="container grid2 grid2--location">
+        <div>
+          <h2>Location</h2>
+          <p>
+            Last Paradise Hotel in Cochrane is located on Lake Brown Street Nº 455, two blocks from the
+            main square. From the entrance of Cochrane head west on San Valentin Street to Teniente
+            Merino, Doctor Stteffens or O'Higgins Streets because they all intersect with Lago Brown
+            Street. You can follow the address from Apple Maps or Google Maps.
+          </p>
+
+          <div class="actions">
+            <a
+              class="btn"
+              href="https://maps.google.com/?daddr=-47.254359,-72.569375"
+              target="_blank"
+              rel="noopener"
+              aria-label="Open in Google Maps"
+            >
+              📍 Open in Google Maps
+            </a>
+            <a
+              class="btn btn--ghost"
+              href="https://maps.apple.com/?daddr=-47.254359,-72.569375"
+              target="_blank"
+              rel="noopener"
+              aria-label="Open in Apple Maps"
+            >
+               Open in Apple Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Map</h3>
+          <div class="map-frame">
+            <iframe
+              title="How to get to the hotel"
+              src="https://www.google.com/maps?q=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contact">
+      <div class="container grid2">
+        <div>
+          <h2>Contact</h2>
+          <p class="lead">Message us for availability, rates, and questions.</p>
+
+          <ul class="list">
+            <li>
+              <strong>Phone / Fax:</strong>
+              <a href="tel:+56672522361">+56 67 2 522 361</a>
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <a href="mailto:hotelultimoparaisochile@hotmail.es">
+                hotelultimoparaisochile@hotmail.es
+              </a>
+            </li>
+          </ul>
+
+          <p class="muted">Fill the form and we’ll get back to you shortly.</p>
+        </div>
+
+        <form class="form card" id="contactForm">
+          <label>
+            Name
+            <input name="name" required autocomplete="name" />
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" required autocomplete="email" />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <button class="btn" type="submit">Send</button>
+          <p class="muted" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Hotel Último Paraíso</p>
+      <a class="to-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Enlarged image"
+  >
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+      ✕
+    </button>
+    <img id="lightboxImg" alt="" />
+  </div>
+</Layout>

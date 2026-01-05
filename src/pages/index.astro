@@ -1,0 +1,481 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const site = Astro.site;
+const pathWithBase = (path: string) =>
+  site ? new URL(path, site).pathname : `/${path.replace(/^\/?/, "")}`;
+
+const canonical = site ? new URL(".", site).href : undefined;
+const altEn = site ? new URL("en/", site).href : "/en/";
+const alternates = [
+  { href: canonical ?? "/", hreflang: "es" },
+  { href: altEn, hreflang: "en" },
+];
+
+const assetBase = pathWithBase("assets/");
+const galleryItems = Array.from({ length: 33 }, (_, idx) => {
+  const id = String(idx + 1).padStart(2, "0");
+  return {
+    id,
+    src: `${assetBase}img/thumbs/Gallery-${id}.webp`,
+    alt: `Fotografía ${id}`,
+  };
+});
+---
+
+<Layout
+  lang="es"
+  title="Hotel Último Paraíso"
+  description="Hotel Último Paraíso. Naturaleza, descanso y experiencia en Patagonia."
+  canonical={canonical}
+  alternates={alternates}
+>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Hotel Último Paraíso">
+        <span class="brand__logo-wrap">
+          <img
+            class="brand__logo brand__logo--dark"
+            src={`${assetBase}img/logo-oscuro.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="brand__logo brand__logo--light"
+            src={`${assetBase}img/logo-claro.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
+        <span class="brand__text">Hotel Último Paraíso</span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span class="sr-only">Abrir menú</span>
+          ☰
+        </button>
+
+        <div class="nav__menu" id="navMenu">
+          <a class="nav__link" href="#sobre">Sobre</a>
+          <a class="nav__link" href="#tarifas">Tarifas</a>
+          <a class="nav__link" href="#servicios">Servicios</a>
+          <a class="nav__link" href="#galeria">Galería</a>
+          <a class="nav__link" href="#ubicacion">Ubicación</a>
+          <a class="nav__link" href="#contacto">Contacto</a>
+
+          <button
+            class="theme-toggle"
+            type="button"
+            id="themeToggle"
+            data-theme-toggle
+            aria-label="Cambiar a modo oscuro"
+            title="Cambiar a modo oscuro"
+          >
+            🌙
+          </button>
+
+          <a
+            class="lang"
+            href={pathWithBase("en/")}
+            data-lang-switch
+            aria-label="Switch to English"
+            >EN</a
+          >
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-label="Portada">
+      <div
+        class="hero__bg"
+        role="img"
+        aria-label="Vista del hotel"
+        data-hero-bg
+      ></div>
+
+      <div class="container hero__inner">
+        <h1>El calor del encanto en la Patagonia de Aysén</h1>
+        <p>
+          Encanto y cordialidad en la ciudad de Cochrane. Patagonia de Aysén -
+          CHILE
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn" href="#contacto">Consultar disponibilidad</a>
+          <a class="btn btn--ghost" href="#galeria">Ver fotografías</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container">
+        <div>
+          <h2>Sobre el hotel</h2>
+          <p>
+            <strong>Somos un hotel de tipo "con encanto" o "refugio verde".</strong>
+          </p>
+          <p>
+            Construido en el año 1997 íntegramente con maderas nativas (Ciprés,
+            Lenga y Mañío). Los propietarios somos españoles enamorados de
+            Cochrane y de estas últimas tierras vírgenes existentes en nuestro
+            planeta. De ahí su nombre Último Paraíso. Probablemente el último
+            paraíso natural, pristino y virgen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--landscape" id="entorno">
+      <div class="landscape-bg" data-landscape-bg></div>
+      <div class="container landscape__content">
+        <div class="landscape__card">
+          <h2>Entorno</h2>
+          <p>
+            Cochrane y por ende el hotel Último Paraíso se encuentra dentro de
+            un entorno virgen apenas tocado por el hombre. Entre las montañas
+            más altas de La Patagonia, Cerro San Lorenzo y Cerro San Valentín de
+            3.900 y 4.000 metros sobre el nivel del mar respectivamente. Al lado
+            del río más caudaloso de Chile, el Río Baker, que es el desagüe del
+            segundo lago más grande de Sudamérica, el Lago General Carrera. Entre
+            las segundas reservas de agua potable más grandes del mundo, Campo de
+            Hielo Norte y Campo de Hielo Sur, 200.000 km cuadrados de hielo. En
+            el último refugio del Huemul Patagónico en estado puro y salvaje.
+            Además de esto, el resto del paisaje, aunque no tenga títulos tan
+            grandes, es increíblemente hermoso, lo que convierte esta región en
+            el Último Paraíso.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="tarifas">
+      <div class="container">
+        <div class="section__head">
+          <h2>Tarifas</h2>
+        </div>
+
+        <div class="rates-grid">
+          <article class="card rate-card">
+            <header class="rate-card__head">
+              <div>
+                <p class="pill pill--soft">Temporada baja</p>
+                <h3>Desde $130.000</h3>
+                <p class="muted">1 Mayo 2025 - 30 Septiembre 2025</p>
+              </div>
+            </header>
+            <ul class="rate-card__list">
+              <li><strong>Habitación single:</strong> 130.000 pesos + impuestos.</li>
+              <li><strong>Habitación doble:</strong> 140.000 pesos + impuestos.</li>
+              <li>
+                <strong>Habitación triple</strong> (2 pax comparten cama doble):
+                150.000 pesos + impuestos.
+              </li>
+            </ul>
+            <p class="muted">* Todas con desayuno incluido.</p>
+          </article>
+
+          <article class="card rate-card rate-card--accent">
+            <header class="rate-card__head">
+              <div>
+                <p class="pill pill--accent">Temporada alta</p>
+                <h3>Desde $150.000</h3>
+                <p class="muted">1 Octubre 2025 - 30 Abril 2026</p>
+              </div>
+            </header>
+            <ul class="rate-card__list">
+              <li><strong>Habitación single:</strong> 150.000 pesos + impuestos.</li>
+              <li><strong>Habitación doble:</strong> 160.000 pesos + impuestos.</li>
+              <li>
+                <strong>Habitación triple</strong> (2 pax comparten cama doble):
+                170.000 pesos + impuestos.
+              </li>
+            </ul>
+            <p class="muted">* Todas con desayuno incluido.</p>
+          </article>
+        </div>
+
+        <div class="rate-terms">
+          <h3>Condiciones</h3>
+          <p>
+            Para la confirmación de la reserva es necesario el prepago del 50% y el otro 50%
+            restante puede ser hasta 31 días antes de la llegada al hotel. Si se solicita con
+            menos de 31 días de anticipación es necesario el prepago del 100%.
+          </p>
+          <p class="muted">Gastos por anulaciones:</p>
+          <ul class="list">
+            <li>Hasta 31 días antes de la llegada: 50% del valor total de la reserva.</li>
+            <li>30 días antes de la llegada o "no show": 100% del valor total de la reserva.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--video" aria-label="Video del hotel">
+      <div class="video-parallax">
+        <iframe
+          src="https://www.youtube.com/embed/Nx28MAplAtI?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&loop=1&playlist=Nx28MAplAtI"
+          title="Hotel Último Paraíso"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div class="video-overlay"></div>
+        <a
+          class="video-link"
+          href="https://www.youtube.com/watch?v=Nx28MAplAtI"
+          target="_blank"
+          rel="noopener"
+          aria-label="Ver video en YouTube"
+        ></a>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section__head">
+          <h2>Alojamiento y servicios</h2>
+          <p class="lead">Calidez, detalles y naturaleza en cada estadía.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service-card">
+            <div class="service-card__header">
+              <p class="pill pill--soft">Habitaciones</p>
+              <h3>Refugio cálido</h3>
+            </div>
+            <p>
+              Siete habitaciones (individual, doble o triple) de 30 m² con baño privado equipado,
+              calefacción a leña, Wi-Fi, teléfono y TV satelital. Incluyen desayuno abundante con
+              productos caseros.
+            </p>
+            <ul class="service-list">
+              <li>Confort y calidez en cada detalle.</li>
+              <li>Desayuno casero incluido.</li>
+            </ul>
+          </article>
+
+          <article class="card service-card service-card--accent">
+            <div class="service-card__header">
+              <p class="pill pill--accent">Servicios</p>
+              <h3>Extras que suman</h3>
+            </div>
+            <ul class="service-list">
+              <li>Salón comedor con televisión y servicio de bar.</li>
+              <li>Servicio de lavandería.</li>
+              <li>
+                Información turística y contactos para excursiones (Glaciar Calluqueo, Reserva
+                Tamango, Parque Patagonia, Tortel, Ruta de las Cascadas, Paso San Carlos,
+                cabalgatas, y más).
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="tripadvisor">
+      <div class="container">
+        <div class="section__head">
+          <h2>Reconocimientos TripAdvisor</h2>
+          <p class="lead">Reputación respaldada por viajeros.</p>
+        </div>
+
+        <div class="trip-grid">
+          <article class="card trip-card">
+            <div id="TA_certificateOfExcellence399" class="TA_certificateOfExcellence">
+              <ul id="hQ2yRBj" class="TA_links">
+                <li id="ZkCOitj">
+                  <a
+                    target="_blank"
+                    href="https://www.tripadvisor.cl/Hotel_Review-g779907-d3696074-Reviews-Hotel_Ultimo_Paraiso-Cochrane_Aisen_Region.html"
+                    rel="noopener"
+                  >
+                    TripAdvisor
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Certificado de Excelencia</p>
+          </article>
+
+          <article class="card trip-card">
+            <div id="TA_cdsratingsonlynarrow52" class="TA_cdsratingsonlynarrow">
+              <ul id="v1blIjQ1CgJl" class="TA_links">
+                <li id="wdQb8SL7bu0">
+                  <a target="_blank" href="https://www.tripadvisor.cl/" rel="noopener">TripAdvisor</a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Valoraciones recientes</p>
+          </article>
+
+          <article class="card trip-card">
+            <div id="TA_rated802" class="TA_rated">
+              <ul id="SZUxhjvuBE" class="TA_links">
+                <li id="D89t6vhoL">
+                  <a target="_blank" href="https://www.tripadvisor.cl/" rel="noopener">TripAdvisor</a>
+                </li>
+              </ul>
+            </div>
+            <p class="muted">Badge de viajeros</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="galeria">
+      <div class="container">
+        <div class="section__head">
+          <h2>Galería</h2>
+          <p class="lead">Haz clic para ampliar.</p>
+        </div>
+
+        <div class="gallery" data-gallery>
+          {galleryItems.map((item) => (
+            <button class="thumb" data-full={item.src}>
+              <img src={item.src} alt={item.alt} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=certificateOfExcellence&uniq=399&locationId=3696074&lang=es_CL&year=2018&display_version=2"
+    ></script>
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=cdsratingsonlynarrow&uniq=52&locationId=3696074&lang=es_CL&border=false&display_version=2"
+    ></script>
+    <script
+      async
+      src="https://www.jscache.com/wejs?wtype=rated&uniq=802&locationId=3696074&lang=es_CL&display_version=2"
+    ></script>
+
+    <section class="section" id="ubicacion">
+      <div class="container grid2 grid2--location">
+        <div>
+          <h2>Ubicación</h2>
+          <p>
+            En Cochrane, el hotel Último Paraíso se encuentra ubicado en calle
+            Lago Brown 455, a dos cuadras de la plaza dirección oeste o lo que
+            es lo mismo, bajar por las calles San Valentín o Teniente Merino o
+            Doctor Steffens o Bernardo O'Higgins porque todas ellas van a caer a
+            la calle Lago Brown. Puedes seguir la dirección desde Apple Maps o
+            Google Maps.
+          </p>
+
+          <div class="actions">
+            <a
+              class="btn"
+              href="https://maps.google.com/?daddr=-47.254359,-72.569375"
+              target="_blank"
+              rel="noopener"
+              aria-label="Abrir en Google Maps"
+            >
+              📍 Abrir en Google Maps
+            </a>
+            <a
+              class="btn btn--ghost"
+              href="https://maps.apple.com/?daddr=-47.254359,-72.569375"
+              target="_blank"
+              rel="noopener"
+              aria-label="Abrir en Apple Maps"
+            >
+               Abrir en Apple Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Mapa</h3>
+          <div class="map-frame">
+            <iframe
+              title="Cómo llegar al hotel"
+              src="https://www.google.com/maps?q=Hotel+Ultimo+Paraiso+Lago+Brown+455+Cochrane+Aysen&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contacto">
+      <div class="container grid2">
+        <div>
+          <h2>Contacto</h2>
+          <p class="lead">Escríbenos para disponibilidad, tarifas y consultas.</p>
+
+          <ul class="list">
+            <li>
+              <strong>Teléfono / Fax:</strong>
+              <a href="tel:+56672522361">+56 67 2 522 361</a>
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <a href="mailto:hotelultimoparaisochile@hotmail.es">
+                hotelultimoparaisochile@hotmail.es
+              </a>
+            </li>
+          </ul>
+
+          <p class="muted">
+            Completa el formulario y te responderemos a la brevedad.
+          </p>
+        </div>
+
+        <form class="form card" id="contactForm">
+          <label>
+            Nombre
+            <input name="name" required autocomplete="name" />
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" required autocomplete="email" />
+          </label>
+
+          <label>
+            Mensaje
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <button class="btn" type="submit">Enviar</button>
+          <p class="muted" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Hotel Último Paraíso</p>
+      <a class="to-top" href="#top">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Imagen ampliada"
+  >
+    <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">
+      ✕
+    </button>
+    <img id="lightboxImg" alt="" />
+  </div>
+</Layout>
